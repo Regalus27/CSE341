@@ -1,0 +1,15 @@
+# Localhost
+###
+# Get All
+GET http://localhost:5959/contacts
+###
+# Get One
+GET http://localhost:5959/contacts/66edb9f6197f79d02a63c74c
+###
+# Production
+###
+# Get All
+GET https://cse341-0z9m.onrender.com/contacts
+###
+# Get One
+GET https://cse341-0z9m.onrender.com/contacts/66edb9f6197f79d02a63c74c
