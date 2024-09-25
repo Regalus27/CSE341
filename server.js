@@ -8,11 +8,12 @@ const port = process.env.PORT || 5959;
 app.use('/', require('./routes/index.js'));
 
 mongodb.initDb((e) => {
-    if(e) {
-        // error logging
-        console.log(e);
-    }
-    else {
-        app.listen(port, () => {console.log(`Listening on port ${port}`)});
-    }
-})
+  if (e) {
+    // error logging
+    console.log(e);
+  } else {
+    app.listen(port, () => {
+      console.log(`Listening on port ${port}`);
+    });
+  }
+});
