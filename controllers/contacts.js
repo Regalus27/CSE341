@@ -4,6 +4,7 @@ const dbName = 'cse341_w01';
 const collectionName = 'contacts';
 
 const getAll = async (req, res) => {
+  //#swagger.tags=['Contacts']
   const result = await mongodb
     .getDatabase()
     .db(dbName)
@@ -16,6 +17,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+  //#swagger.tags=['Contacts']
   const userId = new ObjectId(req.params.id);
   const result = await mongodb
     .getDatabase()
@@ -30,6 +32,7 @@ const getSingle = async (req, res) => {
 
 // TODO: createUser, updateUser, deleteUser
 const createUser = async (req, res) => {
+  //#swagger.tags=['Contacts']
   const user = {
     // pull information from request
     firstName: req.body.firstName,
@@ -53,6 +56,7 @@ const createUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  //#swagger.tags=['Contacts']
   const userId = new ObjectId(req.params.id);
   const user = {
     // pull information from request
@@ -78,6 +82,7 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+  //#swagger.tags=['Contacts']
   const userId = new ObjectId(req.params.id);
   // Send request to create user
   const response = await mongodb
