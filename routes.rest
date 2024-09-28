@@ -55,7 +55,7 @@ Content-Type: application/json
 }
 
 ### Update contact
-PUT https://cse341-0z9m.onrender.com/contacts/66f87a45a4e308354517dc9c HTTP/1.1
+PUT https://cse341-0z9m.onrender.com/contacts/66f8816a17594f76ab18d150 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -67,4 +67,4 @@ Content-Type: application/json
 }
 
 ### Delete contact
-DELETE https://cse341-0z9m.onrender.com/contacts/66f87ad1a4e308354517dc9f HTTP/1.1
+DELETE https://cse341-0z9m.onrender.com/contacts/66f8816a17594f76ab18d150 HTTP/1.1
