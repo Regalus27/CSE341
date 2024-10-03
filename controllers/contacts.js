@@ -5,29 +5,39 @@ const collectionName = 'contacts';
 
 const getAll = async (req, res) => {
   //#swagger.tags=['Contacts']
-  const result = await mongodb
+  mongodb
     .getDatabase()
     .db(dbName)
     .collection(collectionName)
-    .find();
-  result.toArray().then((contacts) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(contacts);
-  });
+    .find()
+    .toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({message: err});
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(contacts);
+    });
 };
 
 const getSingle = async (req, res) => {
+  // Validation
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid contact id to find a contact.');
+  }
   //#swagger.tags=['Contacts']
   const userId = new ObjectId(req.params.id);
-  const result = await mongodb
+  mongodb
     .getDatabase()
     .db(dbName)
     .collection(collectionName)
-    .find({ _id: userId });
-  result.toArray().then((contacts) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(contacts[0]);
-  });
+    .find({ _id: userId })
+    .toArray((err, result) => {
+      if (err) {
+        res.status(400).json({message: err});
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(contacts[0]);
+    });
 };
 
 // TODO: createUser, updateUser, deleteUser
@@ -56,6 +66,10 @@ const createUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  // Validation
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid contact id to update a contact.');
+  }
   //#swagger.tags=['Contacts']
   const userId = new ObjectId(req.params.id);
   const user = {
@@ -82,6 +96,10 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+  // Validation
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid contact id to delete a contact.');
+  }
   //#swagger.tags=['Contacts']
   const userId = new ObjectId(req.params.id);
   // Send request to create user
